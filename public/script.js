@@ -45,11 +45,13 @@ function deleteBook(event) {
     // Search for the book based on my bookId
     for (let i = 0; i < myLibrary.length; i++) {
         if (myLibrary[i].id === bookId) {
-            book = myLibrary[i]; // Save the full book object inside the book variable
+            myLibrary.splice(i, 1); // Remove 1 element at index i
             break;
         }
     }
+    renderBook();
 }
+
 // ------------------- EVENT LISTENER ------------------- //
 // Receive user input of data submitted on form
 const form = document.getElementById("book-form");
@@ -98,7 +100,7 @@ function renderBook() {
         readText.classList.add("book-pages");
 
         const editReadStatusBtn = document.createElement("button");
-        editReadStatusBtn.dataset.id = book.id; // Links te button to its book object
+        editReadStatusBtn.dataset.id = book.id; // Links the button to its book object
         editReadStatusBtn.classList.add("book-buttons");
         editReadStatusBtn.textContent = "TOGGLE READ STATUS";
         editReadStatusBtn.addEventListener("click", editReadStatus);
