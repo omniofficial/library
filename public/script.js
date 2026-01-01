@@ -1,3 +1,4 @@
+// ------------------- BOOK CREATION ------------------- //
 const myLibrary = [];
 // Define the book
 function Book(title, author, pages) {
@@ -26,4 +27,39 @@ form.addEventListener("submit", (e) => {
     const pages = document.getElementById("pages").value;
     // Send the data over to the addBookToLibrary function
     addBookToLibrary(title, author, pages);
+    renderBook();
 });
+
+// ------------------- DISPLAY BOOK VISUALLY ------------------- //
+function renderBook() {
+    const container = document.getElementById("library-container");
+    container.innerHTML = "";
+
+    for (const book of myLibrary) {
+        // Create a div for each book
+        const div = document.createElement("div");
+        div.classList.add("book-card");
+
+        // Append object properties to the new div
+        const title_text = document.createElement("p");
+        title_text.textContent = book.title;
+
+        const author_text = document.createElement("p");
+        author_text.textContent = book.author;
+
+        const pages_text = document.createElement("p");
+        pages_text.textContent = book.pages;
+
+        const read_text = document.createElement("p");
+        read_text.textContent = book.read;
+
+        // Append these child elements to the div
+        div.appendChild(title_text);
+        div.appendChild(author_text);
+        div.appendChild(pages_text);
+        div.appendChild(read_text);
+
+        // Append div to the overall container
+        container.appendChild(div);
+    }
+}
