@@ -1,5 +1,20 @@
 const myLibrary = [];
+// Define the book
+function Book(title, author, pages) {
+    id = crypto.randomUUID();
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = "NO";
+}
 
+// Create a new book using new Book()... and store it in myLibary
+function addBookToLibrary(title, author, pages) {
+    let x = new Book(title, author, pages);
+    myLibrary.push(x);
+    console.log(myLibrary);
+}
 // Receive user input of data submitted on form
 const form = document.getElementById("book-form");
 
@@ -12,19 +27,3 @@ form.addEventListener("submit", (e) => {
     // Send the data over to the addBookToLibrary function
     addBookToLibrary(title, author, pages);
 });
-
-// Define the book
-function Book(id, title, author, pages, read) {
-    id = crypto.randomUUID();
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
-
-// Create a new book using new Book()... and store it in myLibary
-function addBookToLibary(title, author, pages) {
-    x = new Book(title, author, pages);
-    myLibrary.push(x);
-}
