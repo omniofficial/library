@@ -42,28 +42,28 @@ function renderBook() {
 
         // Append object properties to the new div
         const titleText = document.createElement("h2");
-        titleText.textContent = book.title;
+        titleText.textContent = `Title: ${book.title}`;
         titleText.classList.add("book-title");
 
         const idText = document.createElement("p");
-        idText.textContent = book.id;
+        idText.textContent = `ID: ${book.id}`;
         idText.classList.add("book-id");
 
         const authorText = document.createElement("p");
-        authorText.textContent = book.author;
+        authorText.textContent = `Author: ${book.author}`;
         authorText.classList.add("book-author");
 
         const pagesText = document.createElement("p");
-        pagesText.textContent = book.pages;
+        pagesText.textContent = `Pages: ${book.pages}`;
         pagesText.classList.add("book-pages");
 
         const readText = document.createElement("p");
-        readText.textContent = book.read;
+        readText.textContent = `Read: ${book.read}`;
         readText.classList.add("book-pages");
 
         // Append these child elements to the div
         div.appendChild(titleText);
-        div.apppendChild(idText);
+        div.appendChild(idText);
         div.appendChild(authorText);
         div.appendChild(pagesText);
         div.appendChild(readText);
