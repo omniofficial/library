@@ -41,23 +41,32 @@ function renderBook() {
         div.classList.add("book-card");
 
         // Append object properties to the new div
-        const title_text = document.createElement("p");
-        title_text.textContent = book.title;
+        const titleText = document.createElement("h2");
+        titleText.textContent = book.title;
+        titleText.classList.add("book-title");
 
-        const author_text = document.createElement("p");
-        author_text.textContent = book.author;
+        const idText = document.createElement("p");
+        idText.textContent = book.id;
+        idText.classList.add("book-id");
 
-        const pages_text = document.createElement("p");
-        pages_text.textContent = book.pages;
+        const authorText = document.createElement("p");
+        authorText.textContent = book.author;
+        authorText.classList.add("book-author");
 
-        const read_text = document.createElement("p");
-        read_text.textContent = book.read;
+        const pagesText = document.createElement("p");
+        pagesText.textContent = book.pages;
+        pagesText.classList.add("book-pages");
+
+        const readText = document.createElement("p");
+        readText.textContent = book.read;
+        readText.classList.add("book-pages");
 
         // Append these child elements to the div
-        div.appendChild(title_text);
-        div.appendChild(author_text);
-        div.appendChild(pages_text);
-        div.appendChild(read_text);
+        div.appendChild(titleText);
+        div.apppendChild(idText);
+        div.appendChild(authorText);
+        div.appendChild(pagesText);
+        div.appendChild(readText);
 
         // Append div to the overall container
         container.appendChild(div);
