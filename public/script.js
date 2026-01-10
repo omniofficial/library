@@ -1,3 +1,5 @@
+// Library JS Project
+
 // ------------------- BOOK CREATION ------------------- //
 // Define the book
 class Book {
