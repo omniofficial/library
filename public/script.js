@@ -2,8 +2,7 @@
 // Define the book
 class Book {
     constructor(title, author, pages) {
-        id = crypto.randomUUID();
-        this.id = id;
+        this.id = crypto.randomUUID();
         this.title = title;
         this.author = author;
         this.pages = pages;
@@ -36,13 +35,13 @@ class Library {
             }
         }
 
-        // Change read status of selected book
+        // Change read status of selected
         if (book.read === "YES") {
             book.read = "NO";
         } else {
             book.read = "YES";
         }
-        renderBook(); // Rebuild all cards and update the UI.
+        this.renderBook(); // Rebuild all cards and update the UI.
     }
 
     deleteBook(event) {
@@ -55,7 +54,65 @@ class Library {
                 break;
             }
         }
-        renderBook();
+        this.renderBook();
+    }
+
+    renderBook() {
+        const container = document.getElementById("library-container");
+        container.innerHTML = "";
+
+        for (const book of this.books) {
+            // Create a div for each book
+            const div = document.createElement("div");
+            div.classList.add("book-card");
+
+            // Append object properties to the new div
+            const titleText = document.createElement("h2");
+            titleText.textContent = `Title: ${book.title}`;
+            titleText.classList.add("book-title");
+
+            const idText = document.createElement("p");
+            idText.textContent = `ID: ${book.id}`;
+            idText.classList.add("book-id");
+
+            const authorText = document.createElement("p");
+            authorText.textContent = `Author: ${book.author}`;
+            authorText.classList.add("book-author");
+
+            const pagesText = document.createElement("p");
+            pagesText.textContent = `Pages: ${book.pages}`;
+            pagesText.classList.add("book-pages");
+
+            const readText = document.createElement("p");
+            readText.textContent = `Read: ${book.read}`;
+            readText.classList.add("book-pages");
+
+            const editReadStatusBtn = document.createElement("button");
+            editReadStatusBtn.dataset.id = book.id; // Links the button to its book object
+            editReadStatusBtn.classList.add("book-buttons");
+            editReadStatusBtn.textContent = "TOGGLE READ STATUS";
+            editReadStatusBtn.addEventListener("click", (e) =>
+                library.editReadStatus(e)
+            );
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.dataset.id = book.id; // Links the button to its book object
+            deleteBtn.classList.add("book-buttons");
+            deleteBtn.textContent = "DELETE";
+            deleteBtn.addEventListener("click", (e) => library.deleteBook(e));
+
+            // Append these child elements to the div
+            div.appendChild(titleText);
+            div.appendChild(idText);
+            div.appendChild(authorText);
+            div.appendChild(pagesText);
+            div.appendChild(readText);
+            div.appendChild(editReadStatusBtn);
+            div.appendChild(deleteBtn);
+
+            // Append div to the overall container
+            container.appendChild(div);
+        }
     }
 }
 
@@ -75,62 +132,5 @@ form.addEventListener("submit", (e) => {
     // Send the data over to the addBookToLibrary function
     library.addBookToLibrary(title, author, pages);
     // Render book on HTML page
-    renderBook();
+    library.renderBook();
 });
-
-// ------------------- DISPLAY BOOK VISUALLY ------------------- //
-function renderBook() {
-    const container = document.getElementById("library-container");
-    container.innerHTML = "";
-
-    for (const book of this.books) {
-        // Create a div for each book
-        const div = document.createElement("div");
-        div.classList.add("book-card");
-
-        // Append object properties to the new div
-        const titleText = document.createElement("h2");
-        titleText.textContent = `Title: ${book.title}`;
-        titleText.classList.add("book-title");
-
-        const idText = document.createElement("p");
-        idText.textContent = `ID: ${book.id}`;
-        idText.classList.add("book-id");
-
-        const authorText = document.createElement("p");
-        authorText.textContent = `Author: ${book.author}`;
-        authorText.classList.add("book-author");
-
-        const pagesText = document.createElement("p");
-        pagesText.textContent = `Pages: ${book.pages}`;
-        pagesText.classList.add("book-pages");
-
-        const readText = document.createElement("p");
-        readText.textContent = `Read: ${book.read}`;
-        readText.classList.add("book-pages");
-
-        const editReadStatusBtn = document.createElement("button");
-        editReadStatusBtn.dataset.id = book.id; // Links the button to its book object
-        editReadStatusBtn.classList.add("book-buttons");
-        editReadStatusBtn.textContent = "TOGGLE READ STATUS";
-        editReadStatusBtn.addEventListener("click", editReadStatus);
-
-        const deleteBtn = document.createElement("button");
-        deleteBtn.dataset.id = book.id; // Links the button to its book object
-        deleteBtn.classList.add("book-buttons");
-        deleteBtn.textContent = "DELETE";
-        deleteBtn.addEventListener("click", deleteBook);
-
-        // Append these child elements to the div
-        div.appendChild(titleText);
-        div.appendChild(idText);
-        div.appendChild(authorText);
-        div.appendChild(pagesText);
-        div.appendChild(readText);
-        div.appendChild(editReadStatusBtn);
-        div.appendChild(deleteBtn);
-
-        // Append div to the overall container
-        container.appendChild(div);
-    }
-}
